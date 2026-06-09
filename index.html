@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-    <script>eruda.init();</script>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -49,36 +47,36 @@
     </section>
 </main>
 <script>
-// 1. Handle all internal link clicks safely across all devices
+// 1. Hide iframe when mobile nav opens so it doesn't render over the menu
+const navToggle = document.getElementById('nav-toggle');
+const iframe = document.getElementById('showreel-iframe');
+
+if (navToggle && iframe) {
+    navToggle.addEventListener('change', () => {
+        iframe.style.visibility = navToggle.checked ? 'hidden' : 'visible';
+    });
+}
+
+// 2. Handle all internal link clicks safely across all devices
 document.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', function(e) {
         if (this.hostname === window.location.hostname && this.target !== '_blank') {
             e.preventDefault();
             const href = this.href;
-            
-            // Trigger your fade-out style immediately on click
-            const main = document.querySelector('main');
-            if (main) {
-                main.style.opacity = 0;
-            }
 
-            // The Asynchronous Safety Valve: Delays navigation by 50ms.
-            // This clears the thread collision between Instagram's tracker 
-            // and Samsung's OS verification layer before running the redirect.
+            const main = document.querySelector('main');
+            if (main) main.style.opacity = 0;
+
+            // Delay navigation slightly to avoid Instagram Android WebView
+            // thread collision between its tracker and Samsung's OS layer
             setTimeout(() => {
-                if (document.startViewTransition) {
-                    document.startViewTransition(() => {
-                        window.location.href = href;
-                    });
-                } else {
-                    window.location.href = href;
-                }
-            }, 50); 
+                window.location.href = href;
+            }, 50);
         }
     });
 });
 
-// 2. Handle the smooth fade-in animation when a new page loads
+// 3. Fade main content in on page load
 window.addEventListener('load', () => {
     const main = document.querySelector('main');
     if (main) {
