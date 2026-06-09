@@ -314,4 +314,11 @@ nav .nav-title {
     #showreel iframe {
         height: 25vh; 
     }
+    * {
+    transform: none !important;
+    perspective: none !important;
+    backface-visibility: visible !important;
+    transition: none !important;
+    animation: none !important;
+}
 }
