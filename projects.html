@@ -86,21 +86,22 @@
 </section>
 </main>
 <script>
-document.querySelectorAll('a').forEach(link => {
+document.querySelectorAll('a[href^="/"]').forEach(link => {
     link.addEventListener('click', function(e) {
-        if (this.hostname === window.location.hostname && this.target !== '_blank') {
-            e.preventDefault();
-            const href = this.href;
-            
-            if (document.startViewTransition) {
-                document.startViewTransition(() => {
-                    window.location.href = href;
-                });
-            } else {
-                window.location.href = href;
-            }
-        }
+        if (!document.startViewTransition) return;
+        e.preventDefault();
+        const href = this.href;
+        document.startViewTransition(() => {
+            window.location.href = href;
+        });
     });
+});
+window.addEventListener('load', () => {
+    const main = document.querySelector('main');
+    if (main) {
+        main.style.transition = 'opacity 0.6s ease';
+        main.style.opacity = 1;
+    }
 });
 window.addEventListener('load', () => {
     const main = document.querySelector('main');
