@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+</head>
+<body>
+   <!-- Navigation -->
+<nav>
+    <div class="nav-inner">
+        <div class="nav-left-group">
+            <h1 class="nav-title">Owen Farrell</h1>
+            <div class="nav-socials">
+                <a href="https://instagram.com/owenfarrellanim" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com/in/owencfarrell" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://youtube.com/@owenanimation" target="_blank" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Moved inside nav-inner, and before nav-right-group -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <i class="fas fa-bars"></i>
+        </label>
+
+        <div class="nav-right-group">
+            <ul>
+                <li><a href="Showreel.html">Showreel</a></li>
+                <li><a href="Graduate-Film.html">Graduate Film</a></li>
+                <li><a href="Projects.html"class="current">Projects</a></li>
+                <li><a href="About-Me.html">About Me</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if (this.hostname === window.location.hostname) {
+                e.preventDefault();
+                const href = this.href;
+                
+                if (document.startViewTransition) {
+                    document.startViewTransition(() => {
+                        window.location.href = href;
+                    });
+                } else {
+                    window.location.href = href;
+                }
+            }
+        });
+    });
+    document.querySelector('#showreel-iframe').addEventListener('load', function() {
+    document.querySelector('#showreel').classList.add('loaded');
+});
+</script>
+</body>
+</html>

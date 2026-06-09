@@ -1,0 +1,342 @@
+html {
+  /* Tells the browser to always keep the scrollbar track visible */
+  scrollbar-gutter: stable; 
+}
+:root {
+    --fWhite: #FFFFFF;
+    --white: #f8f3ef;
+    --black: #1A1A1A;
+    --orange: #C8693A;
+}
+body {
+    background-color: var(--fWhite);
+    color: var(--black);
+}
+
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation-duration: .4s;
+}
+
+::view-transition-new(root) {
+    animation-duration: .4s;
+}
+main {
+    opacity: 0;
+}
+body {
+    background-color: var(--fWhite);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+ /* paste 2 */
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Keeps your layout sizing perfectly predictable */
+}
+nav {
+    display: flex;
+    align-items: center; 
+    padding: 50px 40px 20px 5px; /* Generous, equal padding on the sides */
+    background-color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+}
+/* 🌟 THE NEW BRANDING WRAPPER (Handles the Center-Left positioning) */
+
+    .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px; /* Same as .image-grid */
+        margin: 0 auto;    /* Same as .image-grid */
+        padding: 0 20px;   /* Same as .image-grid */
+    }
+
+
+.nav-left-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* Let flex-grow push the right group to the other side */
+}
+.nav-left-group .nav-title {
+    border-bottom: 2px solid var(--orange); /* Adds a subtle underline beneath the active page link */
+    padding-bottom: 0px;}
+
+.nav-right-group {
+    display: flex;
+    align-items: center;
+    margin-right: -30px;
+    gap: 20px;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+nav p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--black);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--black);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+nav ul li a.current {
+    color: var(--orange);
+    cursor: default; /* Changes the pointer back to a normal text arrow since you're already there */
+    border-bottom: 2px solid var(--orange); /* Adds a subtle underline beneath the active page link */
+    padding-bottom: 4px;}
+
+nav ul li a:hover {
+    color: var(--orange);
+    transform: translateY(-2px);
+    transition: color 0.3s ease;
+    
+}
+
+nav .nav-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--black);
+    text-transform: uppercase;
+    margin: 0;
+    white-space: nowrap;
+}
+.nav-socials {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between individual icons */
+    border-left: 1px solid var(--black); /* Optional: clean separator line */
+    padding-left: 15px;
+    padding-right: 50px; /* Adds some breathing room on the right side of the icons */
+}
+
+.nav-socials a {
+    color: var(--black); /* Matches your native text color */
+    font-size: 1.35rem;   /* Makes them slightly larger than the text for legibility */
+    text-decoration: none;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* 📲 HOVER EFFECTS */
+.nav-socials a:hover {
+    color: var(--orange); /* Seamlessly turns orange on hover just like your text links! */
+    transform: translateY(-2px); /* Gives a subtle, high-end float upward when hovered */
+}
+
+
+
+
+/* 1. The Grid Container */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns per row */
+  gap: 50px; /* Generous spacing between rows and columns */
+  max-width: 1240px; /* Controls the size of the row */
+  margin: 60px auto; /* Centers the grid and adds vertical spacing */
+  padding: 0 20px;
+  
+  /* CRUCIAL FIX: Stops the grid from stretching lower rows vertically */
+  align-items: start; 
+}
+
+/* 2. The Card Wrapper */
+.image-card {
+  position: relative;
+  width: 100%; /* Fills its 1/3 grid slot horizontally */
+  
+  /* FORCED ASPECT RATIO */
+  aspect-ratio: 2 / 3 !important; 
+  
+  /* BACKUP HEIGHT: Keeps older browsers from collapsing it */
+  height: auto; 
+  
+  border-radius: 16px;
+  overflow: hidden; 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+}
+
+/* 3. The Image Inside */
+.image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Crops the image to fit the 2:3 frame perfectly */
+  display: block;
+}
+
+/* 4. The Hover Effect */
+.image-card:hover {
+  cursor: pointer;
+  transform: scale(1.05); 
+  z-index: 5; 
+  opacity: 0.8;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 16px;
+}
+
+.card-overlay h3 {
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0 20px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.image-card:hover .card-overlay {
+    opacity: 1;
+}
+
+
+#showreel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    transition: opacity 0.6s ease;
+}
+
+#showreel iframe {
+    width: 100%;
+    max-width: 1198px;
+    height: 677px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    /* No transition at all */
+}
+
+
+/* 1. Hide the toggle button by default on Desktop */
+.nav-toggle, .nav-toggle-label {
+    display: none;
+}
+/* 1. Hide the toggle button by default on Desktop */
+.nav-toggle, .nav-toggle-label {
+    display: none;
+}
+
+/* ==========================================================================
+   📱 MOBILE STYLES (Applies to screens 768px wide or smaller)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+        .image-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin: 30px auto;
+    }
+
+    .image-card {
+        aspect-ratio: 3 / 1 !important; /* Wide and short instead of tall */
+    }
+    /* Reset your massive desktop padding so the bar doesn't break */
+    nav {
+        padding-left: 20px;
+        padding-right: 20px;
+        justify-content: space-between; /* Puts Logo on left, Hamburger on right */
+    }
+
+    /* Hide your absolute centered title so it doesn't collide with text */
+    nav .nav-title {
+        display: none;
+    }
+    
+
+    /* Show the hamburger menu icon button */
+    .nav-toggle-label {
+        display: block;
+        font-size: 1.5rem;
+        color: var(--black);
+        cursor: pointer;
+        z-index: 101; /* Keeps it on top of the mobile drawer */
+    }
+
+    /* 🌟 THE MOBILE DRAWER: Turns your right-side group into a full-screen overlay */
+    .nav-right-group {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: white;
+        flex-direction: column; 
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        padding-bottom: 350px; /* Shifts the content upward */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    /* Force your menu links to stack vertically */
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    /* Remove the divider line on your socials for mobile styling */
+    .nav-socials {
+        display: none;
+    }
+
+    /* Hide the actual checkbox input from view */
+    .nav-toggle {
+        display: none;
+    }
+
+    /* ⚡ THE TOGGLE MAGIC: When the hidden checkbox is clicked/checked... */
+    /* ... find the .nav-right-group right next to it and slide it onto the screen! */
+     .nav-toggle:checked ~ .nav-right-group {
+    opacity: 1;           /* Fades in */
+    visibility: visible;
+    }
+
+     .image-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin: 30px auto;
+  }
+}
