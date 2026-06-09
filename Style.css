@@ -1,5 +1,5 @@
 html {
-  scrollbar-gutter: stable; 
+    scrollbar-gutter: stable; 
 }
 :root {
     --fWhite: #FFFFFF;
@@ -12,17 +12,20 @@ body {
     color: var(--black);
 }
 
-@view-transition {
-    navigation: auto;
+@supports (view-transition-name: root) {
+    @view-transition {
+        navigation: auto;
+    }
+
+    ::view-transition-old(root) {
+        animation-duration: .4s;
+    }
+
+    ::view-transition-new(root) {
+        animation-duration: .4s;
+    }
 }
 
-::view-transition-old(root) {
-    animation-duration: .4s;
-}
-
-::view-transition-new(root) {
-    animation-duration: .4s;
-}
 main {
     opacity: 0;
 }
@@ -301,12 +304,6 @@ nav .nav-title {
         visibility: visible;
     }
 
-    .image-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        margin: 30px auto;
-    }
-
     #showreel {
         padding: 30px 20px;
     }
@@ -314,11 +311,4 @@ nav .nav-title {
     #showreel iframe {
         height: 25vh; 
     }
-    * {
-    transform: none !important;
-    perspective: none !important;
-    backface-visibility: visible !important;
-    transition: none !important;
-    animation: none !important;
-}
 }
