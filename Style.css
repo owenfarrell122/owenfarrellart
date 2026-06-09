@@ -101,6 +101,7 @@ nav ul {
 }
 
 nav ul li a {
+    display: inline-block;
     text-decoration: none;
     color: var(--black);
     font-size: 1.25rem;
@@ -113,13 +114,19 @@ nav ul li a.current {
     color: var(--orange);
     cursor: default; /* Changes the pointer back to a normal text arrow since you're already there */
     border-bottom: 2px solid var(--orange); /* Adds a subtle underline beneath the active page link */
-    padding-bottom: 4px;}
+    padding-bottom: 4px;
+    cursor: pointer;
+}
 
 nav ul li a:hover {
     color: var(--orange);
     transform: translateY(-2px);
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
     
+}
+nav ul li a.current:hover {
+    transform: translateY(0); 
+    /* Optional: If you also want to keep its original color, add: color: inherit; */
 }
 
 nav .nav-title {
@@ -162,7 +169,7 @@ nav .nav-title {
   grid-template-columns: repeat(3, 1fr); /* Exactly 3 columns per row */
   gap: 50px; /* Generous spacing between rows and columns */
   max-width: 1240px; /* Controls the size of the row */
-  margin: 60px auto; /* Centers the grid and adds vertical spacing */
+  margin: 50px auto; /* Centers the grid and adds vertical spacing */
   padding: 0 20px;
   
   /* CRUCIAL FIX: Stops the grid from stretching lower rows vertically */
@@ -234,7 +241,7 @@ nav .nav-title {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px 20px;
+    padding: 50px 20px;
     transition: opacity 0.6s ease;
 }
 
@@ -248,10 +255,6 @@ nav .nav-title {
 }
 
 
-/* 1. Hide the toggle button by default on Desktop */
-.nav-toggle, .nav-toggle-label {
-    display: none;
-}
 /* 1. Hide the toggle button by default on Desktop */
 .nav-toggle, .nav-toggle-label {
     display: none;
@@ -273,20 +276,23 @@ nav .nav-title {
     }
     /* Reset your massive desktop padding so the bar doesn't break */
     nav {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-top: 30px !important;
+        padding-left: 10px;
+        padding-right: 10px;
         justify-content: space-between; /* Puts Logo on left, Hamburger on right */
     }
 
     /* Hide your absolute centered title so it doesn't collide with text */
     nav .nav-title {
-        display: none;
+        padding-top: 4px;
     }
     
 
     /* Show the hamburger menu icon button */
     .nav-toggle-label {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 1.5rem;
         color: var(--black);
         cursor: pointer;
@@ -305,7 +311,7 @@ nav .nav-title {
         justify-content: center;
         align-items: center;
         gap: 50px;
-        padding-bottom: 350px; /* Shifts the content upward */
+        padding-bottom: 45vh; /* Shifts the content upward */
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -339,4 +345,10 @@ nav .nav-title {
     gap: 30px;
     margin: 30px auto;
   }
+  #showreel {
+     padding: 30px 20px;
+  }
+  #showreel iframe {
+    height: 25vh; 
+ }
 }
