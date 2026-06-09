@@ -43,18 +43,27 @@
 </nav>
 <main>
     <section id="showreel">
-        <iframe id="showreel-iframe" width="560" height="315" src="https://www.youtube.com/embed/9FnZgJaXaMQ" title="OwenFarrellShowreel2026" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="iframe-wrapper">
+            <iframe id="showreel-iframe" width="560" height="315" src="https://www.youtube.com/embed/9FnZgJaXaMQ" title="OwenFarrellShowreel2026" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
     </section>
 </main>
 <script>
 // 1. Hide iframe when mobile nav opens so it doesn't render over the menu
 const navToggle = document.getElementById('nav-toggle');
-const iframe = document.getElementById('showreel-iframe');
+const navLabel = document.querySelector('.nav-toggle-label');
 
-if (navToggle && iframe) {
-    navToggle.addEventListener('change', () => {
-        iframe.style.visibility = navToggle.checked ? 'hidden' : 'visible';
-    });
+function syncNavState() {
+    if (!navToggle) return;
+    document.body.classList.toggle('nav-open', navToggle.checked);
+}
+
+if (navToggle) {
+    navToggle.addEventListener('change', syncNavState);
+    // Also listen on the label for WebViews where checkbox change is unreliable
+    if (navLabel) {
+        navLabel.addEventListener('click', () => setTimeout(syncNavState, 10));
+    }
 }
 
 // 2. Handle all internal link clicks safely across all devices
