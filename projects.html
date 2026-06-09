@@ -92,22 +92,18 @@ document.querySelectorAll('a').forEach(link => {
             e.preventDefault();
             const href = this.href;
             
-            if (document.startViewTransition) {
-                document.startViewTransition(() => {
-                    window.location.href = href;
-                });
-            } else {
-                window.location.href = href;
+            // Fade out the main content right before leaving
+            const main = document.querySelector('main');
+            if (main) {
+                main.style.opacity = 0;
             }
+
+            // Give the fade-out 150ms to look smooth, then change location safely
+            setTimeout(() => {
+                window.location.href = href;
+            }, 150);
         }
     });
-});
-window.addEventListener('load', () => {
-    const main = document.querySelector('main');
-    if (main) {
-        main.style.transition = 'opacity 0.6s ease';
-        main.style.opacity = 1;
-    }
 });
 </script>
 </body>
