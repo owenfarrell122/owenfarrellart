@@ -86,14 +86,22 @@
 </section>
 </main>
 <script>
+// 1. Handle all internal link clicks safely across all devices
 document.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', function(e) {
         if (this.hostname === window.location.hostname && this.target !== '_blank') {
             e.preventDefault();
             const href = this.href;
             
-            // Wrapping the navigation loop in a 0ms timeout completely 
-            // separates your script from Instagram's native click handler thread.
+            // Trigger your fade-out style immediately on click
+            const main = document.querySelector('main');
+            if (main) {
+                main.style.opacity = 0;
+            }
+
+            // The Asynchronous Safety Valve: Delays navigation by 50ms.
+            // This clears the thread collision between Instagram's tracker 
+            // and Samsung's OS verification layer before running the redirect.
             setTimeout(() => {
                 if (document.startViewTransition) {
                     document.startViewTransition(() => {
@@ -102,11 +110,12 @@ document.querySelectorAll('a').forEach(link => {
                 } else {
                     window.location.href = href;
                 }
-            }, 0); 
+            }, 50); 
         }
     });
 });
 
+// 2. Handle the smooth fade-in animation when a new page loads
 window.addEventListener('load', () => {
     const main = document.querySelector('main');
     if (main) {
