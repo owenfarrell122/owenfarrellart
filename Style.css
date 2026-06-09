@@ -57,9 +57,12 @@ nav {
     align-items: center; 
     padding: 50px 40px 20px 5px;
     background-color: var(--white);
+    /* TESTING: commented out sticky to diagnose Instagram WebView freeze
     position: sticky;
     top: 0;
     z-index: 100;
+    */
+    position: relative;
 }
 
 .nav-inner {
