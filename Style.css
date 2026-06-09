@@ -1,6 +1,4 @@
-html {
-    scrollbar-gutter: stable; 
-}
+
 :root {
     --fWhite: #FFFFFF;
     --white: #f8f3ef;
@@ -309,6 +307,6 @@ nav .nav-title {
     }
 
     #showreel iframe {
-        height: 25vh; 
+        height: auto; 
     }
 }
