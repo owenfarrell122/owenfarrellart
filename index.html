@@ -47,16 +47,6 @@
     </section>
 </main>
 <script>
-document.querySelectorAll('a[href^="/"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-        if (!document.startViewTransition) return;
-        e.preventDefault();
-        const href = this.href;
-        document.startViewTransition(() => {
-            window.location.href = href;
-        });
-    });
-});
 window.addEventListener('load', () => {
     const main = document.querySelector('main');
     if (main) {
