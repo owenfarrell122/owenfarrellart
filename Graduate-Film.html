@@ -47,6 +47,11 @@
     </section>
 </main>
 <script>
+if (navigator.userAgent.includes('Instagram')) {
+    const style = document.createElement('style');
+    style.textContent = '@view-transition { navigation: none; }';
+    document.head.appendChild(style);
+}
 // 1. Handle all internal link clicks safely across all devices
 document.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', function(e) {
