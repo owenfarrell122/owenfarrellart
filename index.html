@@ -47,6 +47,11 @@
     </section>
 </main>
 <script>
+if (navigator.userAgent.includes('Instagram')) {
+    const style = document.createElement('style');
+    style.textContent = '@view-transition { navigation: none; }';
+    document.head.appendChild(style);
+}
 window.addEventListener('load', () => {
     const main = document.querySelector('main');
     if (main) {
