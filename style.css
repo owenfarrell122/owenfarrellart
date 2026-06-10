@@ -50,7 +50,7 @@ nav {
     align-items: center; 
     padding: 50px 40px 20px 5px;
     background-color: var(--fWhite);
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 100;
 }
