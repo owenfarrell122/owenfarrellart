@@ -3,7 +3,7 @@ html {
 }
 :root {
     --white: #FFFFFF;
-    --fWhite: #f3f1ed;
+    --fWhite: #f8f3ef
     --black: #1A1A1A;
     --orange: #C8693A;
 }
@@ -31,7 +31,7 @@ main {
 }
 
 body {
-    background-color: var(--black);
+    background-color: var(--white);
     color: var(--black);
     font-family: 'DM Sans', sans-serif;
 }
