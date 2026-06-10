@@ -12,17 +12,19 @@ body {
     color: var(--black);
 }
 
-/* @view-transition {
-    navigation: auto;
-}
+@supports (view-transition-name: none) {
+    @view-transition {
+        navigation: auto;
+    }
 
-::view-transition-old(root) {
-    animation-duration: .4s;
-}
+    ::view-transition-old(root) {
+        animation-duration: .4s;
+    }
 
-::view-transition-new(root) {
-    animation-duration: .4s;
-} */
+    ::view-transition-new(root) {
+        animation-duration: .4s;
+    }
+}
 
 main {
     opacity: 0;
