@@ -2,33 +2,36 @@ html {
   scrollbar-gutter: stable; 
 }
 :root {
-    --white: #FFFFFF;
-    --fWhite: #f3f1ed;
+    --fWhite: #FFFFFF;
+    --white: #f8f3ef;
     --black: #1A1A1A;
     --orange: #C8693A;
 }
 body {
     background-color: var(--fWhite);
     color: var(--black);
-    overflow: scroll;
 }
 
-@view-transition {
-    navigation: auto;
+@supports (view-transition-name: none) {
+    @view-transition {
+        navigation: auto;
+    }
+
+    ::view-transition-old(root) {
+        animation-duration: .4s;
+    }
+
+    ::view-transition-new(root) {
+        animation-duration: .4s;
+    }
 }
 
-::view-transition-old(root) {
-    animation-duration: .4s;
-}
-
-::view-transition-new(root) {
-    animation-duration: .4s;
-}
 main {
     opacity: 0;
 }
+
 body {
-    background-color: var(--black);
+    background-color: var(--fWhite);
     color: var(--black);
     font-family: 'DM Sans', sans-serif;
 }
@@ -46,8 +49,8 @@ nav {
     display: flex;
     align-items: center; 
     padding: 50px 40px 20px 5px;
-    background-color: var(--fWhite);
-    position: static;
+    background-color: var(--white);
+    position: sticky;
     top: 0;
     z-index: 100;
 }
@@ -186,6 +189,7 @@ nav .nav-title {
   opacity: 0.8;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
 .card-overlay {
     position: absolute;
     top: 0;
