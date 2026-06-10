@@ -1,36 +1,31 @@
 html {
   scrollbar-gutter: stable; 
 }
-
 :root {
     --fWhite: #FFFFFF;
     --white: #f8f3ef;
     --black: #1A1A1A;
     --orange: #C8693A;
 }
-
-/* ─── View Transitions (guarded — skipped by browsers that don't support it properly) ─── */
-@supports (view-transition-name: none) {
-    @view-transition {
-        navigation: auto;
-    }
-
-    ::view-transition-old(root) {
-        animation-duration: .4s;
-    }
-
-    ::view-transition-new(root) {
-        animation-duration: .4s;
-    }
+body {
+    background-color: var(--fWhite);
+    color: var(--black);
 }
 
-/* ─── Base ─── */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@view-transition {
+    navigation: auto;
 }
 
+::view-transition-old(root) {
+    animation-duration: .4s;
+}
+
+::view-transition-new(root) {
+    animation-duration: .4s;
+}
+main {
+    opacity: 0;
+}
 body {
     background-color: var(--fWhite);
     color: var(--black);
@@ -41,17 +36,11 @@ h1, h2, h3 {
     font-family: 'Cormorant Garamond', serif;
 }
 
-/* ─── Main fade-in (CSS fallback so content never stays hidden if JS doesn't fire) ─── */
-main {
-    opacity: 0;
-    animation: fadeIn 0.4s ease forwards;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-
-/* ─── Nav ─── */
 nav {
     display: flex;
     align-items: center; 
@@ -60,7 +49,6 @@ nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    will-change: transform;
 }
 
 .nav-inner {
@@ -78,7 +66,6 @@ nav {
     align-items: center;
     gap: 15px;
 }
-
 .nav-left-group .nav-title {
     border-bottom: 2px solid var(--orange);
     padding-bottom: 0px;
@@ -92,7 +79,6 @@ nav {
     flex-shrink: 0;
     white-space: nowrap;
 }
-
 nav p {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.4rem;
@@ -120,6 +106,7 @@ nav ul li a {
 
 nav ul li a.current {
     color: var(--orange);
+    cursor: default;
     border-bottom: 2px solid var(--orange);
     padding-bottom: 4px;
     cursor: pointer;
@@ -130,7 +117,6 @@ nav ul li a:hover {
     transform: translateY(-2px);
     transition: color 0.3s ease, transform 0.3s ease;
 }
-
 nav ul li a.current:hover {
     transform: translateY(0); 
 }
@@ -144,7 +130,6 @@ nav .nav-title {
     margin: 0;
     white-space: nowrap;
 }
-
 .nav-socials {
     display: flex;
     align-items: center;
@@ -166,43 +151,40 @@ nav .nav-title {
     transform: translateY(-2px);
 }
 
-/* ─── Image Grid ─── */
 .image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
-    max-width: 1240px;
-    margin: 50px auto;
-    padding: 0 20px;
-    align-items: start; 
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  max-width: 1240px;
+  margin: 50px auto;
+  padding: 0 20px;
+  align-items: start; 
 }
 
 .image-card {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    height: auto; 
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3 !important; 
+  height: auto; 
+  border-radius: 16px;
+  overflow: hidden; 
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .image-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .image-card:hover {
-    cursor: pointer;
-    transform: scale(1.05); 
-    z-index: 5; 
-    opacity: 0.8;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+  transform: scale(1.05); 
+  z-index: 5; 
+  opacity: 0.8;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
-/* ─── Card Overlay ─── */
 .card-overlay {
     position: absolute;
     top: 0;
@@ -230,7 +212,6 @@ nav .nav-title {
     opacity: 1;
 }
 
-/* ─── Showreel ─── */
 #showreel {
     display: flex;
     justify-content: center;
@@ -245,33 +226,14 @@ nav .nav-title {
     height: 677px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    position: relative;
-    z-index: 0;
 }
 
-#showreel iframe {
-    width: 100%;
-    max-width: 1198px;
-    height: 677px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    position: relative;
-    z-index: 0;
+.nav-toggle, .nav-toggle-label {
+    display: none;
 }
 
-/* Hide iframe when mobile nav is open — controlled via body class set by JS */
-.iframe-wrapper {
-    transition: opacity 0.3s ease;
-}
-
-body.nav-open .iframe-wrapper {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* ─── Mobile ─── */
 @media (max-width: 768px) {
-
+    
     .image-grid {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -279,11 +241,11 @@ body.nav-open .iframe-wrapper {
     }
 
     .image-card {
-        aspect-ratio: 3 / 1;
+        aspect-ratio: 3 / 1 !important;
     }
 
     nav {
-        padding-top: 30px;
+        padding-top: 30px !important;
         padding-left: 10px;
         padding-right: 10px;
         justify-content: space-between;
@@ -303,7 +265,6 @@ body.nav-open .iframe-wrapper {
         z-index: 101;
     }
 
-    /* ─── Mobile nav overlay — pointer-events: none prevents it blocking taps when hidden ─── */
     .nav-right-group {
         position: fixed;
         top: 0;
@@ -311,14 +272,13 @@ body.nav-open .iframe-wrapper {
         width: 100%;
         height: 100vh;
         background-color: white;
-        flex-direction: column;
+        flex-direction: column; 
         justify-content: center;
         align-items: center;
         gap: 50px;
         padding-bottom: 45vh;
         opacity: 0;
         visibility: hidden;
-        pointer-events: none;
         transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
@@ -339,7 +299,12 @@ body.nav-open .iframe-wrapper {
     .nav-toggle:checked ~ .nav-right-group {
         opacity: 1;
         visibility: visible;
-        pointer-events: auto;
+    }
+
+    .image-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin: 30px auto;
     }
 
     #showreel {
